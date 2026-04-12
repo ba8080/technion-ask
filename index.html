@@ -1,0 +1,561 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>מענה למילואימניקים בטכניון</title>
+  <style>
+    :root {
+      --bg: #07111f;
+      --bg-soft: #0c1728;
+      --card: rgba(12, 23, 40, 0.72);
+      --card-strong: rgba(16, 28, 48, 0.9);
+      --text: #eef4ff;
+      --muted: #9cb0d1;
+      --primary: #6ea8ff;
+      --primary-strong: #8bb8ff;
+      --border: rgba(148, 180, 255, 0.14);
+      --shadow: 0 18px 60px rgba(0, 0, 0, 0.28);
+      --radius: 24px;
+      --max-width: 1120px;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      font-family: Arial, Helvetica, sans-serif;
+      color: var(--text);
+      line-height: 1.6;
+      background:
+        radial-gradient(circle at top right, rgba(83, 126, 255, 0.18), transparent 22%),
+        radial-gradient(circle at top left, rgba(73, 211, 255, 0.10), transparent 18%),
+        linear-gradient(180deg, #08111d 0%, #0a1423 55%, #07111f 100%);
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      background-image: linear-gradient(rgba(255,255,255,0.025) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.025) 1px, transparent 1px);
+      background-size: 34px 34px;
+      mask-image: linear-gradient(180deg, rgba(0,0,0,0.32), transparent 85%);
+    }
+
+    .container {
+      width: min(var(--max-width), calc(100% - 32px));
+      margin: 0 auto;
+    }
+
+    header {
+      padding: 24px 0 10px;
+    }
+
+    .topbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 16px;
+      flex-wrap: wrap;
+      padding: 14px 18px;
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      background: rgba(9, 17, 30, 0.65);
+      backdrop-filter: blur(18px);
+      box-shadow: var(--shadow);
+    }
+
+    .brand {
+      font-size: 1rem;
+      font-weight: 700;
+      letter-spacing: 0.02em;
+    }
+
+    .nav {
+      display: flex;
+      gap: 18px;
+      flex-wrap: wrap;
+    }
+
+    .nav a {
+      color: var(--muted);
+      text-decoration: none;
+      font-weight: 600;
+      transition: color 0.2s ease;
+    }
+
+    .nav a:hover {
+      color: var(--text);
+    }
+
+    main {
+      padding-bottom: 28px;
+    }
+
+    section {
+      padding: 26px 0;
+    }
+
+    .hero {
+      display: grid;
+      grid-template-columns: 1.15fr 0.85fr;
+      gap: 22px;
+      align-items: stretch;
+      padding-top: 28px;
+    }
+
+    .hero-card,
+    .info-card,
+    .feature,
+    .faq-item,
+    .chatbot-shell,
+    .contact-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(18px);
+    }
+
+    .hero-card {
+      padding: 42px;
+      position: relative;
+      overflow: hidden;
+      background:
+        linear-gradient(135deg, rgba(110, 168, 255, 0.08), rgba(255,255,255,0.02)),
+        var(--card-strong);
+    }
+
+    .hero-card::after {
+      content: "";
+      position: absolute;
+      width: 260px;
+      height: 260px;
+      left: -80px;
+      top: -100px;
+      background: radial-gradient(circle, rgba(110,168,255,0.22), transparent 68%);
+      pointer-events: none;
+    }
+
+    h1 {
+      margin: 0 0 16px;
+      font-size: clamp(2.3rem, 4.2vw, 4.2rem);
+      line-height: 1.02;
+      max-width: 11ch;
+      letter-spacing: -0.03em;
+    }
+
+    .subtitle,
+    .section-text,
+    .info-card p,
+    .feature p,
+    .faq-item p,
+    .chatbot-note,
+    .contact-list,
+    footer {
+      color: var(--muted);
+    }
+
+    .subtitle {
+      font-size: 1.06rem;
+      margin-bottom: 28px;
+      max-width: 60ch;
+    }
+
+    .buttons {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .btn,
+    .quick-question {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 48px;
+      padding: 12px 18px;
+      border-radius: 999px;
+      text-decoration: none;
+      font-weight: 700;
+      transition: 0.2s ease;
+      cursor: pointer;
+      font-size: 0.98rem;
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, var(--primary-strong), var(--primary));
+      color: #07111f;
+      box-shadow: 0 10px 26px rgba(110, 168, 255, 0.24);
+    }
+
+    .btn-primary:hover,
+    .quick-question:hover {
+      transform: translateY(-1px);
+      filter: brightness(1.05);
+    }
+
+    .btn-secondary,
+    .quick-question {
+      background: rgba(255, 255, 255, 0.03);
+      color: var(--text);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .hero-side {
+      display: grid;
+      gap: 16px;
+    }
+
+    .info-card,
+    .feature,
+    .faq-item,
+    .contact-card,
+    .chatbot-shell {
+      padding: 24px;
+    }
+
+    .info-card h3,
+    .feature h3 {
+      margin: 0 0 8px;
+      font-size: 1.02rem;
+    }
+
+    .section-title {
+      font-size: 1.9rem;
+      margin: 0 0 8px;
+      letter-spacing: -0.02em;
+    }
+
+    .section-text {
+      margin: 0 0 22px;
+      max-width: 72ch;
+    }
+
+    .grid-3 {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+    }
+
+    .feature,
+    .faq-item {
+      min-height: 100%;
+    }
+
+    .faq-list {
+      display: grid;
+      gap: 14px;
+    }
+
+    .faq-item strong {
+      display: block;
+      margin-bottom: 8px;
+      font-size: 1.02rem;
+      color: var(--text);
+    }
+
+    .questions-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-bottom: 16px;
+    }
+
+    .chatbot-box {
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 18px;
+      background: rgba(255, 255, 255, 0.03);
+      padding: 16px;
+      min-height: 180px;
+      display: grid;
+      gap: 12px;
+      margin-bottom: 16px;
+    }
+
+    .bot-msg,
+    .user-msg {
+      max-width: 88%;
+      padding: 12px 14px;
+      border-radius: 16px;
+      font-size: 0.98rem;
+    }
+
+    .bot-msg {
+      background: rgba(255,255,255,0.05);
+      color: var(--text);
+      justify-self: start;
+      border: 1px solid rgba(255,255,255,0.06);
+    }
+
+    .user-msg {
+      background: linear-gradient(135deg, var(--primary-strong), var(--primary));
+      color: #07111f;
+      justify-self: end;
+      font-weight: 700;
+    }
+
+    .contact-list {
+      display: grid;
+      gap: 10px;
+      margin-top: 14px;
+    }
+
+    .contact-list a {
+      color: var(--primary-strong);
+      text-decoration: none;
+      font-weight: 700;
+    }
+
+    footer {
+      padding: 12px 0 36px;
+      font-size: 0.94rem;
+    }
+
+    @media (max-width: 860px) {
+      .topbar {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .nav {
+        width: 100%;
+        gap: 10px 14px;
+      }
+
+      .hero,
+      .grid-3 {
+        grid-template-columns: 1fr;
+      }
+
+      .hero-card,
+      .info-card,
+      .feature,
+      .faq-item,
+      .contact-card,
+      .chatbot-shell {
+        padding: 22px;
+      }
+
+      .questions-grid {
+        flex-direction: column;
+      }
+
+      .quick-question,
+      .btn {
+        width: 100%;
+      }
+
+      .bot-msg,
+      .user-msg {
+        max-width: 100%;
+      }
+    }
+
+    @media (max-width: 520px) {
+      .container {
+        width: min(100% - 20px, var(--max-width));
+      }
+
+      header {
+        padding: 16px 0 8px;
+      }
+
+      section {
+        padding: 20px 0;
+      }
+
+      .hero {
+        gap: 18px;
+        padding-top: 18px;
+      }
+
+      h1 {
+        font-size: 2.2rem;
+        max-width: 100%;
+      }
+
+      .section-title {
+        font-size: 1.55rem;
+      }
+
+      .brand {
+        font-size: 0.96rem;
+      }
+
+      .nav a,
+      .subtitle,
+      .section-text,
+      .faq-item p,
+      .feature p,
+      .info-card p,
+      .chatbot-note,
+      .contact-list,
+      footer {
+        font-size: 0.95rem;
+      }
+
+      .hero-card,
+      .info-card,
+      .feature,
+      .faq-item,
+      .contact-card,
+      .chatbot-shell,
+      .chatbot-box,
+      .topbar {
+        border-radius: 18px;
+      }
+
+      .chatbot-box {
+        min-height: 144px;
+        padding: 14px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header class="container">
+    <div class="topbar">
+      <div class="brand">מערך התמיכה למילואימניקים בטכניון</div>
+      <nav class="nav">
+        <a href="#about">על השירות</a>
+        <a href="#faq">שאלות נפוצות</a>
+        <a href="#contact">יצירת קשר</a>
+        <a href="#bot">בוט שאלות</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+    <section class="hero">
+      <div class="hero-card">
+        <h1>יש לכם שאלות בנושא מילואים בטכניון?</h1>
+        <p class="subtitle">
+          ריכזנו עבורכם מענה פשוט, ברור ומהיר לשאלות נפוצות של סטודנטים במילואים —
+          זכויות, נהלים, טפסים ודרכי יצירת קשר.
+        </p>
+        <div class="buttons">
+          <a class="btn btn-primary" href="#faq">לשאלות נפוצות</a>
+          <a class="btn btn-secondary" href="#contact">לפנייה לרכזת</a>
+        </div>
+      </div>
+
+      <div class="hero-side">
+        <div class="info-card">
+          <h3>מענה מהיר</h3>
+          <p>מידע מרוכז במקום אחד כדי לחסוך זמן ולתת כיוון ברור כבר מהכניסה הראשונה.</p>
+        </div>
+        <div class="info-card">
+          <h3>קישורים חשובים</h3>
+          <p>אפשר להוסיף כאן קישורים לטפסים, נהלים, עמודי מידע ואתרי הטכניון הרלוונטיים.</p>
+        </div>
+        <div class="info-card">
+          <h3>מעבר לנציגת קשר</h3>
+          <p>במקרים שבהם אין תשובה מיידית, אפשר להפנות ישירות למייל, טלפון או טופס פנייה.</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="about">
+      <h2 class="section-title">מה תמצאו כאן</h2>
+      <p class="section-text">
+        האתר נועד לספק מענה ראשוני ונגיש למשרתי מילואים בטכניון, ולעזור להבין במהירות למי לפנות ואילו מסמכים נדרשים.
+      </p>
+      <div class="grid-3">
+        <div class="feature">
+          <h3>זכויות והתאמות</h3>
+          <p>הסבר כללי על התאמות אקדמיות, מועדים מיוחדים, הגשות ודחיות אפשריות.</p>
+        </div>
+        <div class="feature">
+          <h3>נהלים וטפסים</h3>
+          <p>גישה מהירה למסמכים, טפסים וקישורים חשובים שנדרשים במהלך השירות או לאחריו.</p>
+        </div>
+        <div class="feature">
+          <h3>יצירת קשר</h3>
+          <p>פנייה ישירה לגורם הרלוונטי כשצריך טיפול פרטני או מענה שלא מופיע באתר.</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="faq">
+      <h2 class="section-title">שאלות נפוצות</h2>
+      <p class="section-text">אפשר להתחיל עם כמה שאלות בסיסיות, ובהמשך להחליף אותן בשאלות האמיתיות שחוזרות מהשטח.</p>
+      <div class="faq-list">
+        <div class="faq-item">
+          <strong>איך מדווחים על שירות מילואים לטכניון?</strong>
+          <p>יש להעלות או לשלוח את המסמכים הרלוונטיים בהתאם לנוהל הטכניון. כאן אפשר להוסיף קישור מדויק לטופס או לעמוד הדיווח.</p>
+        </div>
+        <div class="faq-item">
+          <strong>מה עושים אם פספסתי שיעור, תרגול או מבחן בגלל מילואים?</strong>
+          <p>בדרך כלל יש לפנות לגורם האקדמי המתאים ולבדוק זכאות להתאמות. כאן אפשר לפרט את השלבים והמסמכים הנדרשים.</p>
+        </div>
+        <div class="faq-item">
+          <strong>למי פונים אם יש מקרה חריג?</strong>
+          <p>במקרים חריגים ניתן לפנות ישירות לרכזת המילואים או לגורם האחראי בטכניון באמצעות פרטי הקשר שמופיעים למטה.</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="bot">
+      <div class="chatbot-shell">
+        <h2 class="section-title">בוט שאלות נפוצות</h2>
+        <p class="section-text">הבוט עונה על שאלות קבועות מראש. הוא מתאים בדיוק למענה פשוט, בלי מערכת מסובכת ובלי AI.</p>
+
+        <div class="questions-grid">
+          <button class="quick-question" onclick="showAnswer('איך מדווחים על מילואים?', 'כדי לדווח על שירות מילואים יש לשלוח או להעלות את המסמכים לפי נוהל הטכניון. כאן אפשר להוסיף קישור ישיר לטופס או לעמוד הדיווח.')">איך מדווחים על מילואים?</button>
+          <button class="quick-question" onclick="showAnswer('מה עושים אם פספסתי מבחן?', 'אם פספסת מבחן בגלל מילואים, יש לפנות לגורם האקדמי המתאים ולבדוק זכאות להתאמות. כאן אפשר לפרט את השלבים המדויקים לפי נוהל הטכניון.')">מה עושים אם פספסתי מבחן?</button>
+          <button class="quick-question" onclick="showAnswer('למי פונים במקרה חריג?', 'במקרה חריג ניתן לפנות ישירות לרכזת המילואים או לגורם האחראי בטכניון באמצעות פרטי הקשר שמופיעים בהמשך העמוד.')">למי פונים במקרה חריג?</button>
+          <button class="quick-question" onclick="showAnswer('איפה מוצאים טפסים וקישורים?', 'אפשר לרכז כאן את כל הטפסים, הקישורים והמסמכים החשובים כדי שהגישה אליהם תהיה מהירה וברורה.')">איפה מוצאים טפסים וקישורים?</button>
+        </div>
+
+        <div id="chatbotBox" class="chatbot-box">
+          <div class="bot-msg">שלום, אני הבוט של מערך המילואים. אפשר לבחור אחת מהשאלות המוכנות למטה ולקבל תשובה מיידית.</div>
+        </div>
+
+        <div class="chatbot-note">הבוט מציג רק שאלות ותשובות שהוגדרו מראש, כדי לשמור על מענה אחיד, ברור ומדויק.</div>
+      </div>
+    </section>
+
+    <section id="contact">
+      <div class="contact-card">
+        <h2 class="section-title">יצירת קשר</h2>
+        <p class="section-text">כאן תכניסו את פרטי הקשר האמיתיים של הרכזת או של היחידה הרלוונטית.</p>
+        <div class="contact-list">
+          <div>מייל: <a href="mailto:example@technion.ac.il">example@technion.ac.il</a></div>
+          <div>טלפון: <a href="tel:+972500000000">050-000-0000</a></div>
+          <div>טופס פנייה: <a href="#">הוספת קישור לטופס</a></div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="container">
+    <div>האתר מהווה נקודת מידע ראשונית. במקרה של סתירה, יש לפעול לפי הנהלים הרשמיים של הטכניון.</div>
+  </footer>
+  <script>
+    function appendMessage(text, type) {
+      const box = document.getElementById('chatbotBox');
+      const msg = document.createElement('div');
+      msg.className = type === 'user' ? 'user-msg' : 'bot-msg';
+      msg.textContent = text;
+      box.appendChild(msg);
+      box.scrollTop = box.scrollHeight;
+    }
+
+    function showAnswer(question, answer) {
+      const box = document.getElementById('chatbotBox');
+      box.innerHTML = '';
+      appendMessage(question, 'user');
+      setTimeout(() => appendMessage(answer, 'bot'), 250);
+    }
+  </script>
+</body>
+</html>
+
