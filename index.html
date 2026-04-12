@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>מרכז המילואים בטכניון | הבית שלכם בקמפוס</title>
+  <title>זכויות המילואים בטכניון | חורף תשפ"ו</title>
   
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -14,18 +14,17 @@
       --bg-deep: #020617;
       --bg-surface: #0f172a;
       --primary: #10b981;
-      --primary-hover: #34d399;
-      --primary-glow: rgba(16, 185, 129, 0.3);
-      --accent: #38bdf8;
+      --primary-hover: #059669;
+      --primary-dim: rgba(16, 185, 129, 0.1);
       --text-main: #f8fafc;
       --text-muted: #94a3b8;
-      --glass: rgba(30, 41, 59, 0.7);
       --border: rgba(255, 255, 255, 0.1);
-      --radius-lg: 24px;
-      --radius-md: 16px;
+      --radius-lg: 16px;
+      --radius-md: 12px;
     }
 
     * { box-sizing: border-box; margin: 0; padding: 0; }
+    
     body {
       font-family: 'Assistant', 'Heebo', sans-serif;
       background-color: var(--bg-deep);
@@ -34,379 +33,280 @@
       overflow-x: hidden;
     }
 
-    /* Animated Gradient Background */
-    .bg-glow {
-      position: fixed;
-      top: 0; left: 0; width: 100%; height: 100%;
-      background: 
-        radial-gradient(circle at 10% 20%, rgba(16, 185, 129, 0.1) 0%, transparent 40%),
-        radial-gradient(circle at 90% 80%, rgba(56, 189, 248, 0.08) 0%, transparent 40%);
-      z-index: -1;
-    }
+    .container { width: min(1100px, 95%); margin: 0 auto; }
 
-    .container { width: min(1200px, 95%); margin: 0 auto; }
-
-    /* Glass Header */
+    /* Header */
     header {
-      position: sticky;
-      top: 15px;
-      z-index: 1000;
-      margin-top: 20px;
-    }
-    .nav-glass {
-      background: var(--glass);
-      backdrop-filter: blur(12px);
-      -webkit-backdrop-filter: blur(12px);
-      border: 1px solid var(--border);
-      padding: 12px 24px;
-      border-radius: 100px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.5);
-    }
-    .brand { font-weight: 800; font-size: 1.2rem; color: var(--primary); display: flex; align-items: center; gap: 8px; }
-    .nav-links { display: flex; gap: 20px; }
-    .nav-links a { color: var(--text-muted); text-decoration: none; font-weight: 600; transition: 0.3s; font-size: 0.95rem; }
-    .nav-links a:hover { color: var(--primary); }
-
-    /* Hero Section */
-    .hero {
-      padding: 60px 0;
+      padding: 40px 0;
       text-align: center;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
+      border-bottom: 1px solid var(--border);
+      background: linear-gradient(to bottom, rgba(16, 185, 129, 0.05), transparent);
     }
-    .hero h1 {
-      font-size: clamp(2.5rem, 6vw, 4.5rem);
-      line-height: 1.1;
-      font-weight: 900;
-      background: linear-gradient(to bottom left, #fff 50%, var(--primary));
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      margin-bottom: 20px;
-    }
-    .hero p { color: var(--text-muted); max-width: 700px; font-size: 1.2rem; }
+    .hero-title { font-size: 3rem; font-weight: 900; margin-bottom: 10px; }
+    .hero-subtitle { font-size: 1.2rem; color: var(--text-muted); max-width: 700px; margin: 0 auto; }
+    .semester-tag { display: inline-block; background: var(--primary-dim); color: var(--primary); padding: 4px 16px; border-radius: 100px; font-weight: 700; margin-top: 15px; border: 1px solid var(--primary); }
 
-    /* Grid Layout */
-    .main-grid {
+    /* Principles Section */
+    .principles-grid {
       display: grid;
-      grid-template-columns: 1fr 350px;
-      gap: 30px;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 20px;
+      margin: 40px 0;
+    }
+    .principle-card {
+      background: var(--bg-surface);
+      padding: 24px;
+      border-radius: var(--radius-md);
+      border: 1px solid var(--border);
+    }
+    .principle-card h3 { color: var(--primary); margin-bottom: 12px; }
+
+    /* Categories Table */
+    .section-title { font-size: 1.8rem; margin: 40px 0 20px; border-right: 4px solid var(--primary); padding-right: 15px; }
+    
+    .groups-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 20px;
+    }
+    .group-card {
+      background: rgba(255,255,255,0.02);
+      border: 1px solid var(--border);
+      padding: 20px;
+      border-radius: var(--radius-md);
+      transition: 0.3s;
+    }
+    .group-card:hover { border-color: var(--primary); background: var(--primary-dim); }
+    .group-card h4 { font-size: 1.4rem; margin-bottom: 10px; color: var(--primary); }
+    .group-card ul { list-style: none; color: var(--text-muted); }
+    .group-card li { margin-bottom: 8px; position: relative; padding-right: 15px; }
+    .group-card li::before { content: "•"; position: absolute; right: 0; color: var(--primary); }
+
+    /* Rights Grid */
+    .rights-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(450px, 1fr));
+      gap: 20px;
+    }
+    @media (max-width: 600px) { .rights-grid { grid-template-columns: 1fr; } }
+    
+    .right-item {
+      background: var(--bg-surface);
+      border: 1px solid var(--border);
+      padding: 24px;
+      border-radius: var(--radius-md);
+    }
+    .right-item h3 { margin-bottom: 15px; border-bottom: 1px solid var(--border); padding-bottom: 10px; }
+    .highlight { color: var(--primary); font-weight: 700; }
+
+    /* Logistics & Support */
+    .support-section {
+      background: var(--primary-dim);
+      padding: 40px;
+      border-radius: var(--radius-lg);
+      margin: 40px 0;
+      border: 1px dashed var(--primary);
+    }
+
+    /* Contacts Footer */
+    .contact-footer {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 20px;
+      background: #000;
+      padding: 40px;
+      border-radius: var(--radius-md);
       margin-bottom: 60px;
     }
+    .contact-box strong { display: block; color: var(--primary); margin-bottom: 5px; }
+    .contact-box a { color: #fff; text-decoration: none; font-size: 0.95rem; }
+    .contact-box a:hover { text-decoration: underline; }
 
-    /* Chat Section */
-    .chat-card {
-      background: var(--bg-surface);
-      border: 1px solid var(--border);
-      border-radius: var(--radius-lg);
-      display: flex;
-      flex-direction: column;
-      height: 700px;
-      overflow: hidden;
-      box-shadow: 0 20px 50px rgba(0,0,0,0.3);
-    }
-
-    .chat-header {
-      padding: 20px;
-      background: rgba(255,255,255,0.03);
-      border-bottom: 1px solid var(--border);
-      display: flex;
-      align-items: center;
-      gap: 12px;
-    }
-
-    .status-dot { width: 10px; height: 10px; background: var(--primary); border-radius: 50%; box-shadow: 0 0 10px var(--primary); }
-
-    #chatbotBox {
-      flex: 1;
-      overflow-y: auto;
-      padding: 24px;
-      display: flex;
-      flex-direction: column;
-      gap: 16px;
-      background-image: radial-gradient(var(--border) 1px, transparent 1px);
-      background-size: 20px 20px;
-    }
-
-    .msg {
-      max-width: 85%;
-      padding: 14px 18px;
-      border-radius: 18px;
-      font-size: 1.05rem;
-      position: relative;
-      animation: msgIn 0.3s ease-out;
-    }
-    @keyframes msgIn { from { opacity:0; transform: translateY(10px); } to { opacity:1; transform: translateY(0); } }
-
-    .bot-msg { background: var(--glass); align-self: flex-start; border-bottom-right-radius: 4px; border: 1px solid var(--border); }
-    .user-msg { background: var(--primary); color: #000; font-weight: 700; align-self: flex-end; border-bottom-left-radius: 4px; }
-
-    .chat-input-area {
-      padding: 20px;
-      background: rgba(0,0,0,0.2);
-      border-top: 1px solid var(--border);
-    }
-    .input-wrapper {
-      position: relative;
-      display: flex;
-      gap: 10px;
-    }
-    .chat-input {
-      flex: 1;
-      background: var(--bg-deep);
-      border: 1px solid var(--border);
-      padding: 15px 20px;
-      border-radius: 12px;
-      color: white;
-      outline: none;
-      transition: 0.3s;
-    }
-    .chat-input:focus { border-color: var(--primary); box-shadow: 0 0 0 3px var(--primary-glow); }
-    
-    .send-btn {
-      background: var(--primary);
-      border: none;
-      width: 50px;
-      border-radius: 12px;
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      transition: 0.3s;
-    }
-    .send-btn:hover { background: var(--primary-hover); transform: scale(1.05); }
-
-    /* FAQ Sidebar Categories */
-    .sidebar { display: flex; flex-direction: column; gap: 20px; }
-    .category-box {
-      background: var(--bg-surface);
-      border: 1px solid var(--border);
+    .important-note {
+      background: #450a0a;
+      color: #fecaca;
+      padding: 15px;
       border-radius: var(--radius-md);
-      padding: 20px;
-    }
-    .category-title {
-      font-size: 0.9rem;
-      text-transform: uppercase;
-      letter-spacing: 1px;
-      color: var(--primary);
-      margin-bottom: 15px;
-      font-weight: 800;
-    }
-    .q-list { display: flex; flex-direction: column; gap: 8px; }
-    .q-btn {
-      background: none;
-      border: none;
-      color: var(--text-muted);
-      text-align: right;
-      padding: 8px;
-      cursor: pointer;
-      font-size: 0.95rem;
-      border-radius: 8px;
-      transition: 0.2s;
-    }
-    .q-btn:hover { background: rgba(255,255,255,0.05); color: #fff; }
-
-    /* Contact Section */
-    .contact-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 20px;
-      margin-top: 40px;
-    }
-    .contact-card {
-      background: var(--glass);
-      border: 1px solid var(--border);
-      padding: 24px;
-      border-radius: var(--radius-md);
-      transition: 0.3s;
-    }
-    .contact-card:hover { border-color: var(--primary); transform: translateY(-5px); }
-    .contact-card strong { display: block; margin-bottom: 10px; color: var(--primary); }
-    .contact-card a { color: #fff; text-decoration: none; font-size: 1.1rem; }
-
-    footer {
-      padding: 60px 0;
-      text-align: center;
-      color: var(--text-muted);
-      border-top: 1px solid var(--border);
+      margin: 20px 0;
+      border-right: 4px solid #f87171;
     }
 
-    /* Mobile adjustments */
-    @media (max-width: 900px) {
-      .main-grid { grid-template-columns: 1fr; }
-      .sidebar { order: 2; }
-      .chat-card { order: 1; height: 500px; }
-      .hero h1 { font-size: 2.5rem; }
+    .info-link {
+        color: var(--primary);
+        text-decoration: none;
+        font-weight: bold;
     }
   </style>
 </head>
 <body>
-  <div class="bg-glow"></div>
 
-  <header class="container">
-    <div class="nav-glass">
-      <div class="brand">
-        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-        מילואים טכניון
-      </div>
-      <nav class="nav-links">
-        <a href="#faq">שאלות ותשובות</a>
-        <a href="#contact">קשר</a>
-        <a href="https://ugportal.technion.ac.il/מידע-לסטודנטים/מילואים-חדש/" target="_blank">פורטל הסמכה</a>
-      </nav>
+  <header>
+    <div class="container">
+      <h1 class="hero-title">זכויות המילואים בטכניון</h1>
+      <p class="hero-subtitle">כל מה שמילואימניק בטכניון צריך לדעת - ריכוז המידע, התקנות והזכויות העדכניות.</p>
+      <div class="semester-tag">סמסטר חורף תשפ"ו | 27.10.25</div>
     </div>
   </header>
 
   <main class="container">
-    <section class="hero">
-      <h1>הזכויות שלך, במקום אחד.</h1>
-      <p>מרכז המידע האינטראקטיבי למשרתי מילואים בטכניון. כל התשובות, ההתאמות והקשר הישיר בממשק אחד חכם.</p>
+    
+    <!-- Foundation Documents -->
+    <section>
+      <h2 class="section-title">מסמכי היסוד</h2>
+      <div class="principle-card">
+        <p>ההתאמות בצל המלחמה מתעדכנות באופן שנתי. מתווה תשפ"ו טרם התפרסם רשמית, אך עקרונותיו צפויים להיות דומים לאלו של תשפ"ה. זכויות היסוד מעוגנות ב<strong>תקנה 2.4</strong> ובחוק המילואים.</p>
+        <p style="margin-top: 10px;">
+            <a href="https://ugportal.technion.ac.il/מידע-לסטודנטים/מילואים-חדש/" target="_blank" class="info-link">מעבר לפורטל מילואים - לימודי הסמכה</a>
+        </p>
+      </div>
     </section>
 
-    <div class="main-grid" id="faq">
-      <!-- Chat Interface -->
-      <section class="chat-container">
-        <div class="chat-card">
-          <div class="chat-header">
-            <div class="status-dot"></div>
-            <div>
-              <div style="font-weight: 800; font-size: 0.9rem;">בוט המילואים</div>
-              <div style="font-size: 0.75rem; color: var(--text-muted);">מחובר | מענה אוטומטי</div>
-            </div>
-          </div>
+    <!-- Leading Principles -->
+    <section class="principles-grid">
+      <div class="principle-card">
+        <h3>יחסי אנוש ושקיפות</h3>
+        <p>תנו לסגל את הכבוד הראוי. פנייה בגישת "נשמח לעזרה" יעילה הרבה יותר מגישת ה"מגיע לי". הסבירו את מצבכם בכנות - הסגל לרוב יירתם לעזרתכם.</p>
+      </div>
+      <div class="principle-card">
+        <h3>התאמות ולא הטבות</h3>
+        <p>הטרמינולוגיה חשובה. מטרת ההתאמות היא לא "לעקוץ" או להקל אקדמית, אלא לעזור להשלים את הפער שנוצר עקב השירות. אלו כלים לגישור על פערים אקדמיים.</p>
+      </div>
+      <div class="principle-card">
+        <h3>מילואים בראש שקט</h3>
+        <p>כשאתם במילואים - תהיו במילואים. אתם לא מחויבים לדרישות נוכחות או הגשת מטלות בזמן שהצו פתוח. הכל ניתן לפתרון כשתחזרו.</p>
+      </div>
+    </section>
 
-          <div id="chatbotBox">
-            <div class="msg bot-msg">שלום! אני כאן לעזור לך עם כל שאלה לגבי מילואים בטכניון. אפשר להקליד שאלה או לבחור מהתפריט בצד.</div>
-          </div>
+    <!-- Groups -->
+    <section>
+      <h2 class="section-title">חלוקה לקבוצות מילואים</h2>
+      <div class="groups-container">
+        <div class="group-card">
+          <h4>קבוצה I</h4>
+          <ul>
+            <li>עד 21 ימי מילואים בסמסטר</li>
+          </ul>
+        </div>
+        <div class="group-card">
+          <h4>קבוצה II</h4>
+          <ul>
+            <li>21-35 ימי מילואים בסמסטר</li>
+            <li>או מעל 35 ימים בשנה (סמסטר ב' בלבד)</li>
+            <li>או 60 ימי מילואים שהחלו עד 3 חודשים לפני הסמסטר ועד סופו</li>
+          </ul>
+        </div>
+        <div class="group-card">
+          <h4>קבוצה III</h4>
+          <ul>
+            <li>מעל 35 ימי מילואים בסמסטר</li>
+          </ul>
+        </div>
+      </div>
+      <div class="important-note">
+        שימו לב: ההוכחות היחידות שמתקבלות הן טופס 3010 וצו 8. זימון למילואים אינו מהווה הוכחה לביצוע.
+      </div>
+    </section>
 
-          <div class="chat-input-area">
-            <form class="input-wrapper" onsubmit="handleChatSubmit(event)">
-              <input id="chatInput" type="text" class="chat-input" placeholder="הקלד שאלה (למשל: מועד מילואים, חנה נצר, עובר בינארי...)" autocomplete="off">
-              <button type="submit" class="send-btn">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="black" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"></line><polygon points="22 2 15 22 11 13 2 9 22 2"></polygon></svg>
-              </button>
-            </form>
-          </div>
-        </div>
-      </section>
-
-      <!-- Categorized Sidebar -->
-      <aside class="sidebar">
-        <div class="category-box">
-          <div class="category-title">🎓 לימודים ומבחנים</div>
-          <div class="q-list" id="cat-academic"></div>
+    <!-- Rights & Academics -->
+    <section>
+      <h2 class="section-title">התאמות אקדמיות</h2>
+      <div class="rights-grid">
+        
+        <div class="right-item">
+          <h3>מטלות והגשות</h3>
+          <p>הארכת מטלות כמספר ימי המילואים בהם הייתם בשירות בזמן שהמטלה הייתה פתוחה.</p>
+          <p>במקרים של מעל 14 ימי מילואים: הפחתת מספר מטלות בקורס או צמצום דרישות בתיאום עם הסגל.</p>
         </div>
 
-        <div class="category-box">
-          <div class="category-title">🛡️ זכויות וקבוצות</div>
-          <div class="q-list" id="cat-rights"></div>
+        <div class="right-item">
+          <h3>בחינות ומועדים</h3>
+          <p><span class="highlight">מועד מילואים:</span> מועד המילואים מחליף את אחד המועדים הסדירים. ניתן לגשת ל-2 מועדים סך הכל.</p>
+          <p><span class="highlight">לא השלים מ':</span> מאפשר להחליף ציון בקורס לציון "לא השלים מ'". הציון לא נספר לממוצע ולא נחשב ככישלון לצורך קדמים, אך יש להשלים את הקורס בהמשך.</p>
+          <p><span class="highlight">הארכת זמן:</span> זכאות ל-25% תוספת זמן (מעל 14 ימי מילואים בסמסטר).</p>
         </div>
 
-        <div class="category-box">
-          <div class="category-title">📞 לוגיסטיקה וקשר</div>
-          <div class="q-list" id="cat-contact"></div>
+        <div class="right-item">
+          <h3>עוברים בינאריים</h3>
+          <p>המרה לציון "עובר" (ללא השפעה על הממוצע):</p>
+          <ul>
+            <li>קבוצה 2: המרת 2 קורסים בשנה</li>
+            <li>קבוצה 3: המרת 3 קורסים בשנה</li>
+            <li>מגבלה: עד 5 קורסים בתואר או 15% מנקודות הזכות (הנמוך מביניהם).</li>
+          </ul>
         </div>
-      </aside>
-    </div>
 
-    <section id="contact">
-      <h2 style="font-size: 2rem; margin-bottom: 30px; text-align: center;">אנשי קשר דחופים</h2>
-      <div class="contact-grid">
-        <div class="contact-card">
-          <strong>רכזת המילואים (שחר)</strong>
-          <a href="tel:0533039139">053-303-9139</a>
+        <div class="right-item">
+          <h3>נקודות זיכוי (נק"ז)</h3>
+          <ul>
+            <li>2 נק"ז על פעילות חברתית (מעל 14 ימי מילואים בשנה, חד פעמי בתואר).</li>
+            <li>קבוצה 2/3: זכאות ל-2 עד 3 נק"ז אקדמיות (בהתאם להחלטת פקולטה).</li>
+            <li>סך הכל ניתן לצבור עד 10 נק"ז בתואר בשל שירות מילואים.</li>
+          </ul>
         </div>
-        <div class="contact-card">
-          <strong>משרד רכז מילואים</strong>
-          <a href="mailto:ugmiluim@technion.ac.il">ugmiluim@technion.ac.il</a>
+
+      </div>
+    </section>
+
+    <!-- Extra Benefits -->
+    <section>
+      <h2 class="section-title">הטבות נוספות ולוגיסטיקה</h2>
+      <div class="rights-grid">
+        <div class="right-item">
+          <h3>סמסטר קיץ והארכת תואר</h3>
+          <p>מעל 22 ימי מילואים בשנה: קורס אחד בחינם בסמסטר קיץ.</p>
+          <p>מעל 30 ימי מילואים בשנה: שני קורסים בחינם בסמסטר קיץ.</p>
+          <p>הארכת תואר: סמסטר חינם למי שביצע מעל 42 ימים בשנה, שני סמסטרים למבצעי 84 ימים ומעלה.</p>
         </div>
-        <div class="contact-card">
-          <strong>חנה נצר (דיקנאט)</strong>
-          <a href="mailto:hanna.netzer@technion.ac.il">hanna.netzer@technion.ac.il</a>
-        </div>
-        <div class="contact-card">
-          <strong>נציג מילואים אס"ט</strong>
-          <a href="mailto:miluim@asat.technion.ac.il">miluim@asat.technion.ac.il</a>
+
+        <div class="right-item">
+          <h3>עזרים וסיוע כלכלי</h3>
+          <p><span class="highlight">נטסטיק:</span> השאלת מכשירי אינטרנט לשירות במקומות ללא קליטה (מזכירות אס"ט, בניין בית הסטודנט).</p>
+          <p><span class="highlight">הדפסות:</span> זכאות למכסת הדפסות חינם בבית הסטודנט לפי ימי המילואים.</p>
+          <p><span class="highlight">מעונות:</span> 30+ ימי מילואים בשנה מהווים פקטור משמעותי בזכאות למעונות.</p>
         </div>
       </div>
     </section>
+
+    <!-- Support Systems -->
+    <section class="support-section">
+        <h2 style="margin-bottom: 20px;">מרכז החוסן והייעוץ</h2>
+        <p>הטכניון מפעיל מערך תמיכה רגשי ואקדמי נרחב:</p>
+        <ul style="margin: 20px 40px;">
+            <li>חונכויות ושיעורי עזר פרטניים דרך המרכז לייעוץ ותמיכה.</li>
+            <li>סיוע בתכנון עומס לימודים ובניית סדרי עדיפויות.</li>
+            <li>ייעוץ רגשי ומרחב למידה שקט במילואים (בניין אולמן, קומה 4).</li>
+            <li>החזר כספי על קורסי עזר (כגון אתר GOOL) מטעם צה"ל.</li>
+        </ul>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact">
+      <h2 class="section-title">אנשי קשר וכתובות למענה</h2>
+      <div class="contact-footer">
+        <div class="contact-box">
+          <strong>רכזת המילואים</strong>
+          <a href="mailto:Ugmiluim@technion.ac.il">Ugmiluim@technion.ac.il</a>
+        </div>
+        <div class="contact-box">
+          <strong>נציגי מילואים אס"ט</strong>
+          <a href="mailto:Miluim@asat.technion.ac.il">Miluim@asat.technion.ac.il</a>
+        </div>
+        <div class="contact-box">
+          <strong>חנה נצר - ראש מדור</strong>
+          <span>דיקנאט הסטודנטים</span>
+        </div>
+        <div class="contact-box">
+          <strong>מרכז החוסן (אולמן 4)</strong>
+          <span>ייעוץ ותמיכה אקדמית</span>
+        </div>
+      </div>
+    </section>
+
   </main>
 
-  <footer>
-    <div class="container">
-      <p>© 2024 מרכז המילואים בטכניון | נבנה עבורכם, הסטודנטים בחזית.</p>
-    </div>
+  <footer style="text-align: center; padding: 40px; color: var(--text-muted); font-size: 0.9rem;">
+    <p>פותח ועוצב עבור מילואימניקי הטכניון. חזרו בשלום.</p>
   </footer>
 
-  <script>
-    // FAQ Data Organized by Category
-    const faqData = [
-      { q: "מתי יש מועד מילואים?", a: "מועד מילואים נקבע עד 8 שבועות לתוך הסמסטר העוקב. לרוב התאריך נקבע בתיאום מול הסטודנטים. תמיד יש אפשרות לגשת למועד הסדיר הבא במקום.", cat: "academic" },
-      { q: "מה זה 'לא השלים מ'?", a: "התאמה המאפשרת לדחות קורס לסמסטר אחר גם בשלב הבחינות, תוך שמירה על המגן מהסמסטר הנוכחי.", cat: "academic" },
-      { q: "האם מועד מילואים הוא מועד נוסף?", a: "כן, הוא נפרד מא' וב'. אך שימו לב: סטודנט זכאי לגשת ל-2 מועדים סך הכל (כולל מועד מילואים).", cat: "academic" },
-      { q: "כמה עוברים בינאריים מגיעים?", a: "זכאות לקבוצות 2 ו-3. עד 5 קורסים או 10% מנקודות הזכות בתואר (הנמוך מביניהם).", cat: "rights" },
-      { q: "מהן קבוצות המילואים?", a: "קבוצה 1: 14-21 ימים | קבוצה 2: 21-35 ימים | קבוצה 3: מעל 35 ימי מילואים בסמסטר.", cat: "rights" },
-      { q: "איך מקבלים 2 נקז פעילות חברתית?", a: "דרך פורטל המילואים באתר לימודי הסמכה. <a href='https://ugportal.technion.ac.il/מידע-לסטודנטים/מילואים-חדש/' target='_blank'>לחצו כאן לפורטל</a>", cat: "rights" },
-      { q: "המייל של חנה נצר", a: "המייל של חנה נצר הוא: hanna.netzer@technion.ac.il", cat: "contact" },
-      { q: "איך מצטרפים לקהילת המילואים?", a: "יש לנו קבוצת וואטסאפ פעילה מאוד! <a href='https://chat.whatsapp.com/GPl69bJb0RKCi3dk1c6cVq' target='_blank'>להצטרפות לחצו כאן</a>", cat: "contact" },
-      { q: "מה זה נטסטיק?", a: "ראוטר אינטרנט של אס\"ט למילואימניקים ללא קליטה. ניתן לקחת ממזכירות אס\"ט בכפוף לפיקדון.", cat: "contact" }
-    ];
-
-    // Initialize Categories
-    function initFAQ() {
-      faqData.forEach(item => {
-        const btn = document.createElement('button');
-        btn.className = 'q-btn';
-        btn.innerText = item.q;
-        btn.onclick = () => showAnswer(item.q, item.a);
-        document.getElementById(`cat-${item.cat}`).appendChild(btn);
-      });
-    }
-
-    function appendMessage(text, type) {
-      const box = document.getElementById('chatbotBox');
-      const msg = document.createElement('div');
-      msg.className = `msg ${type}-msg`;
-      msg.innerHTML = text;
-      box.appendChild(msg);
-      box.scrollTo({ top: box.scrollHeight, behavior: 'smooth' });
-    }
-
-    function showAnswer(q, a) {
-      appendMessage(q, 'user');
-      setTimeout(() => {
-        appendMessage(a, 'bot');
-      }, 400);
-    }
-
-    function handleChatSubmit(e) {
-      e.preventDefault();
-      const input = document.getElementById('chatInput');
-      const query = input.value.trim().toLowerCase();
-      if (!query) return;
-
-      appendMessage(input.value, 'user');
-      input.value = '';
-
-      // Simple Search Logic
-      setTimeout(() => {
-        const match = faqData.find(item => 
-          item.q.toLowerCase().includes(query) || 
-          item.a.toLowerCase().includes(query)
-        );
-
-        if (match) {
-          appendMessage(match.a, 'bot');
-        } else {
-          appendMessage("מצטער, לא מצאתי תשובה מדויקת. כדאי לנסות מילת מפתח אחרת או לפנות לרכזת המילואים בטלפון שמופיע מטה.", "bot");
-        }
-      }, 500);
-    }
-
-    window.onload = initFAQ;
-  </script>
 </body>
 </html>
