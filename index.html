@@ -55,19 +55,23 @@
     }
 
     header {
-      padding: 24px 0 10px;
+      padding: 16px 0 8px;
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      backdrop-filter: blur(10px);
     }
 
     .topbar {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      gap: 16px;
+      gap: 14px;
       flex-wrap: wrap;
       padding: 14px 18px;
       border: 1px solid var(--border);
       border-radius: 18px;
-      background: rgba(9, 17, 30, 0.65);
+      background: rgba(9, 17, 30, 0.72);
       backdrop-filter: blur(18px);
       box-shadow: var(--shadow);
     }
@@ -80,7 +84,7 @@
 
     .nav {
       display: flex;
-      gap: 18px;
+      gap: 12px;
       flex-wrap: wrap;
     }
 
@@ -100,21 +104,19 @@
     }
 
     section {
-      padding: 26px 0;
+      padding: 18px 0;
     }
 
     .hero {
       display: grid;
-      grid-template-columns: 1.15fr 0.85fr;
-      gap: 22px;
+      grid-template-columns: 1.05fr 0.95fr;
+      gap: 16px;
       align-items: stretch;
-      padding-top: 28px;
+      padding-top: 12px;
     }
 
     .hero-card,
     .info-card,
-    .feature,
-    .faq-item,
     .chatbot-shell,
     .contact-card {
       background: var(--card);
@@ -125,7 +127,7 @@
     }
 
     .hero-card {
-      padding: 42px;
+      padding: 28px;
       position: relative;
       overflow: hidden;
       background:
@@ -136,156 +138,104 @@
     .hero-card::after {
       content: "";
       position: absolute;
-      width: 260px;
-      height: 260px;
-      left: -80px;
-      top: -100px;
+      width: 200px;
+      height: 200px;
+      left: -70px;
+      top: -90px;
       background: radial-gradient(circle, rgba(110,168,255,0.22), transparent 68%);
       pointer-events: none;
     }
 
     h1 {
-      margin: 0 0 16px;
-      font-size: clamp(2.3rem, 4.2vw, 4.2rem);
-      line-height: 1.02;
-      max-width: 11ch;
+      margin: 0 0 12px;
+      font-size: clamp(1.9rem, 4vw, 3.8rem);
+      line-height: 1.08;
+      max-width: 13ch;
       letter-spacing: -0.03em;
+      position: relative;
+      z-index: 1;
     }
 
     .subtitle,
     .section-text,
     .info-card p,
-    .feature p,
-    .faq-item p,
     .chatbot-note,
     .contact-list,
-    footer {
+    footer,
+    .search-hint,
+    .empty-state {
       color: var(--muted);
     }
 
     .subtitle {
-      font-size: 1.06rem;
-      margin-bottom: 28px;
-      max-width: 60ch;
+      font-size: 0.98rem;
+      margin-bottom: 18px;
+      max-width: 56ch;
+      position: relative;
+      z-index: 1;
     }
 
     .buttons {
       display: flex;
-      gap: 12px;
+      gap: 10px;
       flex-wrap: wrap;
+      position: relative;
+      z-index: 1;
     }
 
     .btn,
     .quick-question {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      min-height: 48px;
-      padding: 12px 18px;
-      border-radius: 999px;
-      text-decoration: none;
-      font-weight: 700;
-      transition: 0.2s ease;
-      cursor: pointer;
-      font-size: 0.98rem;
+      width: 100%;
+      min-height: 60px;
+      padding: 14px 16px;
+      border-radius: 18px;
+      justify-content: flex-start;
+      text-align: right;
+      line-height: 1.35;
     }
 
-    .btn-primary {
-      background: linear-gradient(135deg, var(--primary-strong), var(--primary));
-      color: #07111f;
-      box-shadow: 0 10px 26px rgba(110, 168, 255, 0.24);
+    .quick-question.active-question {
+      border-color: rgba(110,168,255,0.45);
+      background: rgba(110,168,255,0.10);
+      box-shadow: 0 0 0 2px rgba(110,168,255,0.08);
     }
 
-    .btn-primary:hover,
-    .quick-question:hover {
-      transform: translateY(-1px);
-      filter: brightness(1.05);
+    .hidden-question {
+      display: none;
     }
 
-    .btn-secondary,
-    .quick-question {
-      background: rgba(255, 255, 255, 0.03);
-      color: var(--text);
-      border: 1px solid rgba(255, 255, 255, 0.1);
-    }
-
-    .hero-side {
-      display: grid;
-      gap: 16px;
-    }
-
-    .info-card,
-    .feature,
-    .faq-item,
-    .contact-card,
-    .chatbot-shell {
-      padding: 24px;
-    }
-
-    .info-card h3,
-    .feature h3 {
-      margin: 0 0 8px;
-      font-size: 1.02rem;
-    }
-
-    .section-title {
-      font-size: 1.9rem;
-      margin: 0 0 8px;
-      letter-spacing: -0.02em;
-    }
-
-    .section-text {
-      margin: 0 0 22px;
-      max-width: 72ch;
-    }
-
-    .grid-3 {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 18px;
-    }
-
-    .feature,
-    .faq-item {
-      min-height: 100%;
-    }
-
-    .faq-list {
-      display: grid;
-      gap: 14px;
-    }
-
-    .faq-item strong {
-      display: block;
-      margin-bottom: 8px;
-      font-size: 1.02rem;
-      color: var(--text);
-    }
-
-    .questions-grid {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 10px;
-      margin-bottom: 16px;
+    .empty-state {
+      display: none;
+      padding: 14px 2px 4px;
+      font-size: 0.95rem;
     }
 
     .chatbot-box {
       border: 1px solid rgba(255,255,255,0.08);
-      border-radius: 18px;
-      background: rgba(255, 255, 255, 0.03);
+      border-radius: 20px;
+      background: rgba(255, 255, 255, 0.05);
       padding: 16px;
-      min-height: 180px;
+      min-height: 160px;
       display: grid;
       gap: 12px;
       margin-bottom: 16px;
+      position: sticky;
+      top: 84px;
+      box-shadow: 0 12px 34px rgba(0, 0, 0, 0.20);
+    }
+
+    .chatbot-box.active-answer {
+      border-color: rgba(110,168,255,0.42);
+      box-shadow: 0 0 0 3px rgba(110,168,255,0.10), 0 18px 40px rgba(0,0,0,0.24);
     }
 
     .bot-msg,
     .user-msg {
-      max-width: 88%;
-      padding: 12px 14px;
+      max-width: 92%;
+      padding: 13px 14px;
       border-radius: 16px;
-      font-size: 0.98rem;
+      font-size: 0.97rem;
+      word-break: break-word;
     }
 
     .bot-msg {
@@ -312,110 +262,135 @@
       color: var(--primary-strong);
       text-decoration: none;
       font-weight: 700;
+      word-break: break-word;
     }
 
     footer {
-      padding: 12px 0 36px;
-      font-size: 0.94rem;
+      padding: 10px 0 28px;
+      font-size: 0.92rem;
     }
 
     @media (max-width: 860px) {
+      .hero {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .container {
+        width: min(100% - 16px, var(--max-width));
+      }
+
+      header {
+        padding: 10px 0 6px;
+      }
+
       .topbar {
-        flex-direction: column;
-        align-items: flex-start;
+        padding: 12px 14px;
+        border-radius: 16px;
+      }
+
+      .brand {
+        width: 100%;
+        font-size: 0.95rem;
       }
 
       .nav {
         width: 100%;
-        gap: 10px 14px;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 8px;
       }
 
-      .hero,
-      .grid-3 {
-        grid-template-columns: 1fr;
+      .nav a {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        min-height: 40px;
+        border-radius: 12px;
+        background: rgba(255,255,255,0.04);
+        border: 1px solid rgba(255,255,255,0.06);
+        font-size: 0.91rem;
+      }
+
+      section {
+        padding: 14px 0;
+      }
+
+      .hero {
+        gap: 12px;
+        padding-top: 8px;
       }
 
       .hero-card,
       .info-card,
-      .feature,
-      .faq-item,
       .contact-card,
       .chatbot-shell {
-        padding: 22px;
+        padding: 18px;
+        border-radius: 18px;
       }
 
-      .questions-grid {
+      h1 {
+        font-size: 1.78rem;
+        max-width: 100%;
+      }
+
+      .subtitle {
+        font-size: 0.93rem;
+        margin-bottom: 16px;
+      }
+
+      .buttons {
         flex-direction: column;
       }
 
-      .quick-question,
       .btn {
         width: 100%;
+      }
+
+      .section-title {
+        font-size: 1.35rem;
+      }
+
+      .section-text,
+      .chatbot-note,
+      .contact-list,
+      footer,
+      .search-hint,
+      .empty-state,
+      .info-card p {
+        font-size: 0.92rem;
+      }
+
+      .search-input {
+        min-height: 48px;
+        font-size: 0.96rem;
+      }
+
+      .questions-grid {
+        grid-template-columns: 1fr;
+        gap: 8px;
+      }
+
+      .quick-question {
+        min-height: 54px;
+        padding: 13px 14px;
+        border-radius: 16px;
+        font-size: 0.94rem;
+      }
+
+      .chatbot-box {
+        min-height: 132px;
+        padding: 14px;
+        border-radius: 16px;
+        position: static;
+        top: auto;
       }
 
       .bot-msg,
       .user-msg {
         max-width: 100%;
-      }
-    }
-
-    @media (max-width: 520px) {
-      .container {
-        width: min(100% - 20px, var(--max-width));
-      }
-
-      header {
-        padding: 16px 0 8px;
-      }
-
-      section {
-        padding: 20px 0;
-      }
-
-      .hero {
-        gap: 18px;
-        padding-top: 18px;
-      }
-
-      h1 {
-        font-size: 2.2rem;
-        max-width: 100%;
-      }
-
-      .section-title {
-        font-size: 1.55rem;
-      }
-
-      .brand {
-        font-size: 0.96rem;
-      }
-
-      .nav a,
-      .subtitle,
-      .section-text,
-      .faq-item p,
-      .feature p,
-      .info-card p,
-      .chatbot-note,
-      .contact-list,
-      footer {
-        font-size: 0.95rem;
-      }
-
-      .hero-card,
-      .info-card,
-      .feature,
-      .faq-item,
-      .contact-card,
-      .chatbot-shell,
-      .chatbot-box,
-      .topbar {
-        border-radius: 18px;
-      }
-
-      .chatbot-box {
-        min-height: 144px;
-        padding: 14px;
+        font-size: 0.94rem;
       }
     }
   </style>
@@ -459,57 +434,68 @@
     <section id="faq">
       <div class="chatbot-shell">
         <h2 class="section-title">שאלות נפוצות</h2>
-        <p class="section-text">בחרו שאלה לקבלת תשובה.</p>
+        <p class="section-text">בחרו שאלה לקבלת תשובה, או חפשו לפי מילת מפתח.</p>
 
-        <div class="questions-grid">
-          <button class="quick-question" onclick="showAnswer('איך מחולקים לקבוצות לפי ימי מילואים?', 'קבוצה 1: 14–21 ימי מילואים במהלך הסמסטר. קבוצה 2: 21–35 ימי מילואים במהלך הסמסטר. קבוצה 3: מעל 35 ימי מילואים במהלך הסמסטר ו/או תקופת המבחנים.')">איך מחולקים לקבוצות לפי ימי מילואים?</button>
-
-          <button class="quick-question" onclick="showAnswer('מה ההחרגה לקבוצה 2 בסמסטר חורף?', 'בסמסטר חורף, שירות של 60 ימים החל מחודשיים לפני פתיחת הסמסטר ועד סופו מזכה בהחרגה לקבוצה 2.')">מה ההחרגה לקבוצה 2 בסמסטר חורף?</button>
-
-          <button class="quick-question" onclick="showAnswer('מה קורה לקבוצה 3 בסמסטר חורף או אביב?', 'קבוצה 3 בסמסטר חורף מזכה אוטומטית בקבוצה 2 בסמסטר אביב. קבוצה 3 בסמסטר אביב מזכה אוטומטית בקבוצה 2 בסמסטר קיץ. זה נכון רק לאותה שנה אקדמית. קבוצה 3 בסמסטר קיץ לא מזכה בקבוצה 2 בסמסטר חורף העוקב לו.')">מה קורה לקבוצה 3 בסמסטר חורף או אביב?</button>
-
-          <button class="quick-question" onclick="showAnswer('מי נותן את ההתאמות?', 'ההתאמות ניתנות פרטנית בכל קורס לפי החלטת המרצה. יש לפנות למרצה או למתרגל האחראי בהתאם להנחיות הקורס. המרצה אמור לפרסם את ההתאמות עד כשבועיים לפני הבחינה.')">מי נותן את ההתאמות?</button>
-
-          <button class="quick-question" onclick="showAnswer('האם מגיעה דחייה בהגשות?', 'כן. על כל יום מילואים מגיע יום דחייה. מעל כ-21 ימי מילואים נדרשת התחשבות נוספת, כמו הפחתת מטלות או דרך הוגנת לקבל ציון מגן.')">האם מגיעה דחייה בהגשות?</button>
-
-          <button class="quick-question" onclick="showAnswer('מתי יש זכאות למועד מילואים?', 'יש זכאות אוטומטית לקבוצות 1, 2 ו-3. יש זכאות גם אם שירתת 10 ימים רצופים במהלך הסמסטר או תקופת המבחנים, או אם שירתת ביום הבחינה או עד 3 ימים לפני הבחינה. במקרה של צו חירום או צו בהתראה קצרה משבוע של 5 ימים רצופים, הסטודנט זכאי למועדי מילואים בכל המקצועות שמועד הבחינה שלהם יהיה אחרי שירות המילואים.')">מתי יש זכאות למועד מילואים?</button>
-
-          <button class="quick-question" onclick="showAnswer('מה זה נטסטיק?', 'נטסטיק הוא מכשיר אלקטרוני של אס״ט, המשמש כראוטר אינטרנט בשטח למילואימניקים ללא קליטה. אוספים אותו ממזכירת אס״ט.')">מה זה נטסטיק?</button>
-
-          <button class="quick-question" onclick="showAnswer('האם המרצה חייב לספק הקלטות?', 'לא. אין חובה לספק הקלטות, אבל כן חובה לספק אלטרנטיבה כמו סיכומים, ספרות או חומרי לימוד אחרים.')">האם המרצה חייב לספק הקלטות?</button>
-
-          <button class="quick-question" onclick="showAnswer('האם יש הגבוהה מבניהם?', 'לא. אין את ההתאמה הזאת למשרתי מילואים בטכניון.')">האם יש הגבוהה מבניהם?</button>
-
-          <button class="quick-question" onclick="showAnswer('האם אפשר לגשת ל-3 מועדים?', 'לא. אין אפשרות ל-3 מועדים.')">האם אפשר לגשת ל-3 מועדים?</button>
-
-          <button class="quick-question" onclick="showAnswer('האם יש חונכות ועזרה לימודית?', 'כן. משרתי מילואים זכאים לחונכות ועזרה לימודית לאחר פנייה יזומה, דרך דיקנאט הסטודנטים ובאמצעות פנייה ליועצת הפקולטית. קיימת זכאות לשעות חונכות ולסיוע נוסף.')">האם יש חונכות ועזרה לימודית?</button>
-
-          <button class="quick-question" onclick="showAnswer('האם יש הנחות או קופונים ללמידה?', 'כן. דרך דיקנאט הסטודנטים, בפנייה לעדי חביבי, ניתן לקבל קופונים לאתרים לימודיים כמו גול או סטאדיס.')">האם יש הנחות או קופונים ללמידה?</button>
-
-          <button class="quick-question" onclick="showAnswer('מה לגבי פקלים של אס״ט?', 'קיימת השתתפות כספית או סבסוד. כל 20 ימי מילואים מזכים בפקל חינם. הנתון הזה כפוף לשינוי ולהחלטת האגודה ואין סעיף מחייב.')">מה לגבי פקלים של אס״ט?</button>
-
-          <button class="quick-question" onclick="showAnswer('האם יש כפל תוספת זמן?', 'לא. גם במקרה של אבחון וגם של מילואים, עדיין יש רק 25% תוספת זמן. במקרה חריג של שירות מילואים עצים, בערך 80 ימים ומעלה, ניתן לפנות פרטנית לחנה נצר לבקשת התאמות נוספות.')">האם יש כפל תוספת זמן?</button>
-
-          <button class="quick-question" onclick="showAnswer('איך מגישים עוברים בינאריים?', 'מגישים דרך המערכת באתר לימודי הסמכה, כאשר המערכת נפתחת במועד שנקבע מראש. במקרים דחופים, כמו סגירת תואר, יש לפנות לחנה נצר.')">איך מגישים עוברים בינאריים?</button>
-
-          <button class="quick-question" onclick="showAnswer('מה לגבי עוברים בינאריים וחיצי צפון?', 'עוברים בינאריים של חיצי צפון לא נכללים במגבלות המילואים, והם נחשבים כלל-טכניוניים.')">מה לגבי עוברים בינאריים וחיצי צפון?</button>
-
-          <button class="quick-question" onclick="showAnswer('כמה עוברים בינאריים מגיעים?', 'הזכאים הם קבוצות 2 ו-3, על בסיס שירות מילואים בסמסטר. ניתן להשתמש בהם במהלך כל השנה, גם על קורס בסמסטר אחר באותה שנה קלנדרית. המגבלה היא עד 5 קורסים או עד 10% מנקודות הזכות בתואר, לפי הנמוך מביניהם.')">כמה עוברים בינאריים מגיעים?</button>
-
-          <button class="quick-question" onclick="showAnswer('איך נספרים ימי המילואים במלחמת שגת הארי?', 'מ-25 במרץ מתחילה ספירה לסמסטר אביב.')">איך נספרים ימי המילואים במלחמת שגת הארי?</button>
-
-          <button class="quick-question" onclick="showAnswer('עד מתי נספרים ימי מילואים בסמסטר חורף תשפ״ו?', 'הספירה היא מתחילת הסמסטר, 29.10.2025, ועד מועד ב׳ של הבחינה בקורס.')">עד מתי נספרים ימי מילואים בסמסטר חורף תשפ״ו?</button>
-
-          <button class="quick-question" onclick="showAnswer('לא קיבלתי שיוך לקבוצה. מה עושים?', 'יש לפנות לחנה נצר, לצרף טופס 3010 או אישור שמ״פ, ולבקש אישור מילואים ושיוך לקבוצה. בסמסטר חורף, שירות של 60 ימים החל מחודשיים לפני פתיחת הסמסטר ועד סופו מזכה בהחרגה לקבוצה 2. קבוצה 3 בסמסטר חורף מזכה אוטומטית בקבוצה 2 בסמסטר אביב. קבוצה 3 בסמסטר אביב מזכה אוטומטית בקבוצה 2 בסמסטר קיץ. זה נכון רק לאותה שנה אקדמית, ולכן קבוצה 3 בסמסטר קיץ לא מזכה בקבוצה 2 בסמסטר חורף העוקב לו.')">לא קיבלתי שיוך לקבוצה. מה עושים?</button>
-
-          <button class="quick-question" onclick="showAnswer('מה המייל של רכז מילואים אס״ט?', 'המייל של רכז מילואים אס״ט הוא ugmiluim@technion.ac.il.')">מה המייל של רכז מילואים אס״ט?</button>
-
-          <button class="quick-question" onclick="showAnswer('מה המייל של חנה נצר?', 'המייל של חנה נצר הוא hanna.netzer@technion.ac.il.')">מה המייל של חנה נצר?</button>
+        <div class="search-wrap">
+          <input id="faqSearch" class="search-input" type="search" placeholder="חפשו שאלה, למשל: מועד מילואים, חנה נצר, דחייה..." oninput="filterQuestions()" />
+          <div class="search-hint">החיפוש מסנן את רשימת השאלות בזמן אמת.</div>
         </div>
 
-        <div id="chatbotBox" class="chatbot-box">
+        <div id="chatbotBox" class="chatbot-box" aria-live="polite">
           <div class="bot-msg">שלום, אפשר לבחור אחת מהשאלות המוכנות ולקבל תשובה מיידית.</div>
         </div>
+
+        <div id="questionsGrid" class="questions-grid">
+          <button class="quick-question" data-question="חלוקת קבוצות לפי ימי מילואים" onclick="showAnswer('חלוקת קבוצות לפי ימי מילואים', 'קבוצה 1: 14–21 ימי מילואים. קבוצה 2: 21–35 ימי מילואים. קבוצה 3: מעל 35 ימי מילואים. הימים נצברים במהלך הסמסטר ו/או תקופת המבחנים.')">חלוקת קבוצות לפי ימי מילואים</button>
+
+          <button class="quick-question" data-question="החרגות לקבוצה 2" onclick="showAnswer('החרגות לקבוצה 2', 'בסמסטר חורף, שירות של 60 ימים החל מחודשיים לפני פתיחת הסמסטר ועד סופו מזכה בקבוצה 2. קבוצה 3 בסמסטר חורף מזכה אוטומטית בקבוצה 2 בסמסטר אביב. קבוצה 3 בסמסטר אביב מזכה אוטומטית בקבוצה 2 בסמסטר קיץ. הנ״ל נכון רק לאותה שנה אקדמית ולא לשני סמסטרים עוקבים. כלומר, קבוצה 3 בסמסטר קיץ לא מזכה בקבוצה 2 בסמסטר חורף העוקב לו.')">החרגות לקבוצה 2</button>
+
+          <button class="quick-question" data-question="מה קורה לקבוצה 3 בסמסטר חורף או אביב" onclick="showAnswer('מה קורה לקבוצה 3 בסמסטר חורף או אביב?', 'קבוצה 3 בסמסטר חורף מזכה אוטומטית בקבוצה 2 בסמסטר אביב. קבוצה 3 בסמסטר אביב מזכה אוטומטית בקבוצה 2 בסמסטר קיץ. הנ״ל נכון רק לאותה שנה אקדמית ולא לשני סמסטרים עוקבים. כלומר, קבוצה 3 בסמסטר קיץ לא מזכה בקבוצה 2 בסמסטר חורף העוקב לו.')">מה קורה לקבוצה 3 בסמסטר חורף או אביב?</button>
+
+          <button class="quick-question" data-question="מי נותן את ההתאמות" onclick="showAnswer('מי נותן את ההתאמות?', 'ההתאמות ניתנות פרטנית בכל קורס לפי החלטת המרצה. יש לפנות למרצה או למתרגל האחראי בהתאם להנחיות הקורס. המרצה אמור לפרסם את ההתאמות עד כשבועיים לפני הבחינה.')">מי נותן את ההתאמות?</button>
+
+          <button class="quick-question" data-question="האם מגיעה דחייה בהגשות" onclick="showAnswer('האם מגיעה דחייה בהגשות?', 'כן. על כל יום מילואים מגיע יום דחייה. מעל כ-21 ימי מילואים נדרשת התחשבות נוספת, כמו הפחתת מטלות או דרך הוגנת לקבל ציון מגן.')">האם מגיעה דחייה בהגשות?</button>
+
+          <button class="quick-question" data-question="מתי יש זכאות למועד מילואים" onclick="showAnswer('מתי יש זכאות למועד מילואים?', 'יש זכאות אוטומטית לקבוצות 1, 2 ו-3. יש זכאות גם אם שירתת 10 ימים רצופים במהלך הסמסטר או תקופת המבחנים, או אם שירתת ביום הבחינה או עד 3 ימים לפני הבחינה. במקרה של צו חירום או צו בהתראה קצרה משבוע של 5 ימים רצופים, הסטודנט זכאי למועדי מילואים בכל המקצועות שמועד הבחינה שלהם יהיה אחרי שירות המילואים.')">מתי יש זכאות למועד מילואים?</button>
+
+          <button class="quick-question" data-question="מה זה נטסטיק" onclick="showAnswer('מה זה נטסטיק?', 'נטסטיק הוא מכשיר אלקטרוני של אס״ט, המשמש כראוטר אינטרנט בשטח למילואימניקים ללא קליטה. האיסוף הוא ממזכירות אס״ט, במלאי מוגבל ובכפוף לפיקדון.')">מה זה נטסטיק?</button>
+
+          <button class="quick-question" data-question="האם המרצה חייב לספק הקלטות" onclick="showAnswer('האם המרצה חייב לספק הקלטות?', 'לא. אין חובה לספק הקלטות, אבל כן חובה לספק אלטרנטיבה כמו סיכומים, ספרות או חומרי לימוד אחרים.')">האם המרצה חייב לספק הקלטות?</button>
+
+          <button class="quick-question" data-question="האם יש הגבוהה מבניהם" onclick="showAnswer('האם יש הגבוהה מבניהם?', 'לא. אין את ההתאמה הזאת למשרתי מילואים בטכניון.')">האם יש הגבוהה מבניהם?</button>
+
+          <button class="quick-question" data-question="האם אפשר לגשת ל-3 מועדים" onclick="showAnswer('האם אפשר לגשת ל-3 מועדים?', 'לא. אין אפשרות ל-3 מועדים.')">האם אפשר לגשת ל-3 מועדים?</button>
+
+          <button class="quick-question" data-question="האם יש חונכות ועזרה לימודית" onclick="showAnswer('האם יש חונכות ועזרה לימודית?', 'כן. משרתי מילואים זכאים לחונכות ועזרה לימודית לאחר פנייה יזומה, דרך דיקנאט הסטודנטים ובאמצעות פנייה ליועצת הפקולטית. קיימת זכאות לשעות חונכות ולסיוע נוסף.')">האם יש חונכות ועזרה לימודית?</button>
+
+          <button class="quick-question" data-question="האם יש הנחות או קופונים ללמידה" onclick="showAnswer('האם יש הנחות או קופונים ללמידה?', 'כן. דרך דיקנאט הסטודנטים, בפנייה לעדי חביבי, ניתן לקבל קופונים לאתרים לימודיים כמו גול או סטאדיס.')">האם יש הנחות או קופונים ללמידה?</button>
+
+          <button class="quick-question" data-question="מה לגבי פקלים של אס״ט" onclick="showAnswer('מה לגבי פקלים של אס״ט?', 'קיימת השתתפות כספית או סבסוד. כל 20 ימי מילואים מזכים בפקל חינם. הנתון הזה כפוף לשינוי ולהחלטת האגודה ואין סעיף מחייב.')">מה לגבי פקלים של אס״ט?</button>
+
+          <button class="quick-question" data-question="האם יש כפל תוספת זמן" onclick="showAnswer('האם יש כפל תוספת זמן?', 'לא. גם במקרה של אבחון וגם של מילואים, עדיין יש רק 25% תוספת זמן. במקרה חריג של שירות מילואים עצים, בערך 80 ימים ומעלה, ניתן לפנות פרטנית לחנה נצר לבקשת התאמות נוספות.')">האם יש כפל תוספת זמן?</button>
+
+          <button class="quick-question" data-question="איך מגישים עוברים בינאריים" onclick="showAnswer('איך מגישים עוברים בינאריים?', 'מגישים דרך המערכת באתר לימודי הסמכה, כאשר המערכת נפתחת במועד שנקבע מראש. במקרים דחופים, כמו סגירת תואר, יש לפנות לחנה נצר.')">איך מגישים עוברים בינאריים?</button>
+
+          <button class="quick-question" data-question="מה לגבי עוברים בינאריים וחיצי צפון" onclick="showAnswer('מה לגבי עוברים בינאריים וחיצי צפון?', 'עוברים בינאריים של חיצי צפון לא נכללים במגבלות המילואים, והם נחשבים כלל-טכניוניים.')">מה לגבי עוברים בינאריים וחיצי צפון?</button>
+
+          <button class="quick-question" data-question="כמה עוברים בינאריים מגיעים" onclick="showAnswer('כמה עוברים בינאריים מגיעים?', 'הזכאים הם קבוצות 2 ו-3, על בסיס שירות מילואים בסמסטר. ניתן להשתמש בהם במהלך כל השנה, גם על קורס בסמסטר אחר באותה שנה קלנדרית. המגבלה היא עד 5 קורסים או עד 10% מנקודות הזכות בתואר, לפי הנמוך מביניהם.')">כמה עוברים בינאריים מגיעים?</button>
+
+          <button class="quick-question" data-question="איך נספרים ימי המילואים במלחמת שגת הארי" onclick="showAnswer('איך נספרים ימי המילואים במלחמת שגת הארי?', 'מ-25 במרץ מתחילה ספירה לסמסטר אביב.')">איך נספרים ימי המילואים במלחמת שגת הארי?</button>
+
+          <button class="quick-question" data-question="עד מתי נספרים ימי מילואים בסמסטר חורף תשפ״ו" onclick="showAnswer('עד מתי נספרים ימי מילואים בסמסטר חורף תשפ״ו?', 'הספירה היא מתחילת הסמסטר, 29.10.2025, ועד מועד ב׳ של הבחינה בקורס.')">עד מתי נספרים ימי מילואים בסמסטר חורף תשפ״ו?</button>
+
+          <button class="quick-question" data-question="לא קיבלתי שיוך לקבוצה מה עושים" onclick="showAnswer('לא קיבלתי שיוך לקבוצה. מה עושים?', 'יש לפנות לחנה נצר, לצרף טופס 3010 או אישור שמ״פ, ולבקש אישור מילואים ושיוך לקבוצה.')">לא קיבלתי שיוך לקבוצה. מה עושים?</button>
+
+          <button class="quick-question" data-question="מה המייל של רכז מילואים טכניון" onclick="showAnswer('מה המייל של רכז מילואים טכניון?', 'המייל של רכז מילואים טכניון הוא ugmiluim@technion.ac.il.')">מה המייל של רכז מילואים טכניון?</button>
+
+          <button class="quick-question" data-question="מה המייל של חנה נצר" onclick="showAnswer('מה המייל של חנה נצר?', 'המייל של חנה נצר הוא hanna.netzer@technion.ac.il.')">מה המייל של חנה נצר?</button>
+
+          <button class="quick-question" data-question="מי היועצת מלשכת דיקן הסטודנטים אליה עליי לפנות" onclick="showAnswer('מי היועצת מלשכת דיקן הסטודנטים אליה עליי לפנות?', 'צריך לפנות ליועצת הרלוונטית לפי הפקולטה שלך. לרשימת היועצות וכתובות הדואר האלקטרוני שלהן: https://dean.technion.ac.il/center-for-counseling-n-support/צוות-היחידה/')">מי היועצת מלשכת דיקן הסטודנטים אליה עליי לפנות?</button>
+
+          <button class="quick-question" data-question="אילו מסמכים מתקבלים להוכחת מילואים" onclick="showAnswer('אילו מסמכים מתקבלים להוכחת מילואים?', 'ההוכחות שמתקבלות הן טופס 3010 וצו 8. זימון למילואים לא מתקבל.')">אילו מסמכים מתקבלים להוכחת מילואים?</button>
+        </div>
+
+        <div id="emptyState" class="empty-state">לא נמצאו שאלות תואמות לחיפוש.</div>
 
         <div class="chatbot-note">העמוד מציג תשובות קבועות מראש בלבד.</div>
       </div>
@@ -522,8 +508,9 @@
         <div class="contact-list">
           <div>רכזת המילואים: שחר</div>
           <div>טלפון: <a href="tel:+972533039139">053-303-9139</a></div>
-          <div>מייל רכז מילואים אס״ט: <a href="mailto:ugmiluim@technion.ac.il">ugmiluim@technion.ac.il</a></div>
+          <div>מייל רכז מילואים טכניון: <a href="mailto:ugmiluim@technion.ac.il">ugmiluim@technion.ac.il</a></div>
           <div>מייל חנה נצר: <a href="mailto:hanna.netzer@technion.ac.il">hanna.netzer@technion.ac.il</a></div>
+          <div>מייל אס״ט: <a href="mailto:miluim@asat.technion.ac.il">miluim@asat.technion.ac.il</a></div>
         </div>
       </div>
     </section>
@@ -545,9 +532,38 @@
 
     function showAnswer(question, answer) {
       const box = document.getElementById('chatbotBox');
+      const buttons = document.querySelectorAll('#questionsGrid .quick-question');
+
+      buttons.forEach((button) => {
+        const isActive = (button.dataset.question || button.textContent).trim() === question.replace('?', '').trim() || button.textContent.trim() === question.trim();
+        button.classList.toggle('active-question', isActive);
+      });
+
       box.innerHTML = '';
       appendMessage(question, 'user');
-      setTimeout(() => appendMessage(answer, 'bot'), 250);
+      setTimeout(() => {
+        appendMessage(answer, 'bot');
+        box.classList.add('active-answer');
+        setTimeout(() => box.classList.remove('active-answer'), 1800);
+        box.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+      }, 180);
+    }
+
+    function filterQuestions() {
+      const input = document.getElementById('faqSearch');
+      const query = input.value.trim().toLowerCase();
+      const buttons = document.querySelectorAll('#questionsGrid .quick-question');
+      const emptyState = document.getElementById('emptyState');
+      let visibleCount = 0;
+
+      buttons.forEach((button) => {
+        const text = (button.dataset.question || button.textContent).toLowerCase();
+        const shouldShow = text.includes(query);
+        button.classList.toggle('hidden-question', !shouldShow);
+        if (shouldShow) visibleCount += 1;
+      });
+
+      emptyState.style.display = visibleCount === 0 ? 'block' : 'none';
     }
   </script>
 </body>
